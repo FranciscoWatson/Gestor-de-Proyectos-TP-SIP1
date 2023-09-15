@@ -1,1 +1,1 @@
-Trabajo práctico de Aplicaciones Interactivas en UADE. 
+Trabajo práctico de Seminario de Integración Profesional en UADE. 
