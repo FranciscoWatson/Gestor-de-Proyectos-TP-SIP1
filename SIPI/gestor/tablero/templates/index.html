@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Kanban UI</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/tablero/css/estilos.css'%}">
+
+
+</head>
+<body>
+    
+   <script> alert ("js es una poringa - toma 1 "</script>
+   
+
+        <div class="kanban-head">
+            <strong class="kanban-head-title">TABLERO KAMBAN</strong>
+        </div>
+	<button id="btn-ejecutar">Cargar Tareas</button>
+
+        <div class="kanban-table">
+
+
+
+            <div class="kanban-block" id="pendientes" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>PENDIENTES</strong>
+            </div>
+
+            <div class="kanban-block" id="procesos" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>EN PROCESO</strong>
+            </div>
+
+            <div class="kanban-block" id="completados" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <strong>COMPLETADOS</strong>
+            </div>
+
+        {% for tarea in tareas %}
+
+
+
+        {% endfor %}
+
+        </div>
+
+    </div>
+
+   <script type="text/javascript" src="{% static '/tablero/js/script.js' %}" defer></script>
+
+</body>
+
+</html>
