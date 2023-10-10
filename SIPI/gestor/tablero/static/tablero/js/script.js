@@ -81,10 +81,8 @@ function validarCampos(nombre, descripcion) {
 
 function registrarTarea() {
 
-    {% for tarea in tareas %}
        
-       
- const divElemento = document.createElement('div');
+    const divElemento = document.createElement('div');
 
     const p1 = document.createElement('p');
     p1.textContent = {{tarea.nombre}};
@@ -105,7 +103,6 @@ function registrarTarea() {
 
     // Agrega el nuevo div con los elementos al div específico
     miDiv.appendChild(divElemento);
-     {% endfor %}
 
 }
 
