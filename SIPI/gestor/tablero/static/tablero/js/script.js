@@ -85,10 +85,10 @@ function registrarTarea() {
     const divElemento = document.createElement('div');
 
     const p1 = document.createElement('p');
-    p1.textContent = {{tarea.nombre}};
+    p1.textContent = 'titulo 1';
 
     const p2 = document.createElement('p');
-    p2.textContent = {{tarea.descripcion}};
+    p2.textContent = 'descripcion'};
 
     const p3 = document.createElement('p');
     p3.textContent = 'Jorge Segovia';
