@@ -81,18 +81,19 @@ function validarCampos(nombre, descripcion) {
 
 function registrarTarea() {
 
-    
+    {% for tarea in tareas %}
+       
+       
  const divElemento = document.createElement('div');
 
-    // Crea tres elementos de párrafo (p) con cadenas de texto
-    const p1 = document.createElement('div');
-    p1.textContent = 'Texto 1';
+    const p1 = document.createElement('p');
+    p1.textContent = {{tarea.nombre}};
 
-    const p2 = document.createElement('div');
-    p2.textContent = 'Texto 2';
+    const p2 = document.createElement('p');
+    p2.textContent = {{tarea.descripcion}};
 
-    const p3 = document.createElement('div');
-    p3.textContent = 'Texto 3';
+    const p3 = document.createElement('p');
+    p3.textContent = 'Jorge Segovia';
 
     // Agrega los elementos de párrafo al div
     divElemento.appendChild(p1);
@@ -104,9 +105,8 @@ function registrarTarea() {
 
     // Agrega el nuevo div con los elementos al div específico
     miDiv.appendChild(divElemento);
+     {% endfor %}
 
-
-    
 }
 
 const btnEjecutar = document.getElementById("btn-ejecutar");
