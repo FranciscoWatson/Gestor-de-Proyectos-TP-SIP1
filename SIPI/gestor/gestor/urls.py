@@ -19,6 +19,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('tablero/', include('tablero.urls')),
+    path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('', admin.site.urls),
 
 ]
@@ -26,3 +27,4 @@ urlpatterns = [
 
 admin.site.site_header = "Panel de Administración de Proyectos"  # Cambia el encabezado del panel de administración
 admin.site.site_title = "Administrar Proyectos"  # Cambia el título de la página de administración
+admin.site.index_title = "Bienvenidos aSAP - Proyectos Agiles"

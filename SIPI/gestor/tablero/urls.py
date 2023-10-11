@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
-
+from .views import ProyectoLista,TareaLista
 urlpatterns = [
-    path('', views.ver_tablero, name="tablero"),
+    path('proyectos/', ProyectoLista.as_view(), name='proyecto-lista'),
+    path('tareas/', TareaLista.as_view(), name='tarea-lista'),
 ]
