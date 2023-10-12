@@ -2,9 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from .models import Proyecto, Tarea
 from django.contrib import messages
-from datetime import datetime
-from datetime import date
-from django.utils.html import format_html
+
 
 def ver_tablero(modeladmin, request, queryset):
     if queryset.count() != 1:
@@ -16,6 +14,7 @@ def ver_tablero(modeladmin, request, queryset):
     dir_tablero = 'http://173.230.135.41/?id=' + id_proyecto
     return HttpResponseRedirect(dir_tablero)
 
+   
 @admin.register(Proyecto)
 class ProyectoAdmin(admin.ModelAdmin):
     list_display = ('nombre','descripcion','fecha_creacion','activo')
@@ -26,36 +25,29 @@ class ProyectoAdmin(admin.ModelAdmin):
 
 @admin.register(Tarea)
 class TareaAdmin(admin.ModelAdmin):
-    list_display = ('nombre','usuario','estado','proyecto', 'fecha_creacion', 'completada','dias_trascurridos','tiempo_transcurrido')
+    list_display = ('nombre','usuario','estado','proyecto', 'fecha_creacion', 'completada')
     list_filter = ('proyecto', 'completada','usuario')
     search_fields = ('nombre', 'descripcion')
-    readonly_fields = ["fecha_asignacion"]
-
 # Register your models here.
 
-        
-    def dias_trascurridos(self, obj):
 
+    def duracion_desde_asignacion(self, obj):
         if obj.fecha_asignacion:
             today = date.today()
             delta = today - obj.fecha_asignacion
-            return int(delta.days)
+            return delta.days
         return None
+    
+      def porcentaje(self, obj):
+          porcen=float(obj.fecha_asignaciono)/float(duracion_desde_asignacion)
+    
+                
+     return format_html('<span style="color: green;">{}</span>', obj.direccion)
+        else:
+            return format_html('<span style="color: red;">{}</span>', obj.direccion)
+
+    direccion_color.short_description = 'Direccion'
 
 
-    def tiempo_transcurrido(self, obj):
-       if obj.fecha_asignacion:
-           today = date.today()
-           delta = today - obj.fecha_asignacion
-           delta = int(delta.days)
-           porcen = float(delta/obj.duracion_en_dias_habiles)*100
-           if porcen < 35:
-               return format_html('<a style="color: green;">{}</a>', str(porcen) + " %")
-           elif (porcen >=35 and porcen < 75):
-               return format_html('<a style="color: orage;">{}</a>', str(porcen) + " %")
-           else:
-          #      return format_html('<b style="background:{};">{}</b>',color,obj.status)
-               return format_html('<a style="color: red;">{}</a>',str(porcen) + " %")
-
-
+    duracion_desde_asignacion.short_description = 'Duración desde asignación (días)'
 

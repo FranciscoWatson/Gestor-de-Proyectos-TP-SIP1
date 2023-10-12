@@ -50,10 +50,11 @@ INSTALLED_APPS = [
     'tablero',
     'corsheaders',
     'historias',
+    'django.contrib.contenttypes',
+    'grappelli.dashboard',
     'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -90,6 +91,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gestor.wsgi.application'
 
+GRAPPELLI_INDEX_DASHBOARD = 'gestor.dashboard.CustomIndexDashboard'
+
+#GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
+#    'gestor.admin.admin_site': 'gestion.customdashboard.CustomIndexDashboard',
+#}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

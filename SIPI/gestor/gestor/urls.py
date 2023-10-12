@@ -20,6 +20,7 @@ from django.urls import path,include
 urlpatterns = [
     path('tablero/', include('tablero.urls')),
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
+    path('grappelli-docs/', include('grappelli.urls_docs')), # grappelli docs URLS
     path('', admin.site.urls),
 
 ]
