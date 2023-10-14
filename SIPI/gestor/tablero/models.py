@@ -1,9 +1,11 @@
+
 from django.db import models
 from django.contrib.auth.models import User  
 from datetime import datetime
+from django.contrib.auth.models import User
+
 # models.py
 
-from django.db import models
 
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -14,6 +16,10 @@ class Proyecto(models.Model):
 
     def __str__(self):
         return self.nombre
+
+    class Meta:
+        verbose_name = "proyecto"  
+        verbose_name_plural = "proyectos"  # Nombre plural en el administrador
 
 
 
@@ -39,9 +45,26 @@ class Tarea(models.Model):
         return self.nombre
 
     def save(self, *args, **kwargs):
-        if self.usuario and not self.fecha_asignacion:
+        if self.usuario and not self.fecha_asignacion: # fecha_asignacion queda determinada por la primera asignacion, sin importar las asignaciones posteriores.
             self.fecha_asignacion = datetime.now()
             self.estado = 'I'  
         super(Tarea, self).save(*args, **kwargs)
 
-# Create your models here.
+
+class equipos(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
+    integrantes = models.ManyToManyField(User,null=True,blank=True)
+    fecha_creacion = models.DateField(auto_now_add=True)
+    activo = models.BooleanField(default=True)
+    fecha_finalizacion = models.DateField(null=True,blank=True)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        verbose_name = "Equipo" 
+        verbose_name_plural = "equipos de trabajo"  
+
+
